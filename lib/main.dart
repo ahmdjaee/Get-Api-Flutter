@@ -37,6 +37,7 @@ class _MyAppState extends State<MyApp> {
               if (snapshot.hasData) {
                 List<DataPerson> isiData = snapshot.data!;
                 return ListView.builder(
+                  // itemCount mengambil keseluruhan data
                   itemCount: isiData.length,
                   itemBuilder: (context, index) {
                     return Material(
@@ -44,7 +45,9 @@ class _MyAppState extends State<MyApp> {
                       child: ListTile(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DetailPerson()));
+                              builder: (context) => DetailPerson(
+                                    dataPerson: isiData[index],
+                                  )));
                         },
                         contentPadding: EdgeInsets.symmetric(vertical: 20),
                         title: Text(isiData[index].nama),
